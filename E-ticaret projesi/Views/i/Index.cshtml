@@ -1,0 +1,16 @@
+﻿@model E_ticaret_projesi.Models.i.IndexModel
+@{
+    ViewBag.Title = "Index";
+
+}
+<div class="row">       
+    
+    @foreach (var item in Model.Products)
+    {
+        @Html.Partial("_ProductItem",item)
+    }
+
+</div>
+
+
+

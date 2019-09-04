@@ -1,0 +1,95 @@
+﻿@model E_ticaret_projesi.Models.Account.ProfilModel
+@{
+    ViewBag.Title = string.Format("{0} {1}", Model.Members.Name, Model.Members.Surname);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string defaultImage = "/Content/Images/default-image.png";
+}
+<html>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Profil Sayfası</h2>
+                <hr />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <center>
+                    <img src="@(string.IsNullOrEmpty(Model.Members.ProfileImageName) ? defaultImage : Model.Members.ProfileImageName)"
+                         style="height:180px; width:180px;" class="img-circle img-responsive img-thumbnail" />
+                </center>
+            </div>
+            <div class="col-md-8 well">
+
+                <div class="form-group">
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 text-danger">Adı : </label>
+                    <label class="col-md-10">   &nbsp; @Model.Members.Name</label>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 text-danger">Soyadı : </label>
+                    <label class="col-md-10">  &nbsp; @Model.Members.Surname</label>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 text-danger">E-Posta : </label>
+
+                    <label class="col-md-10">  &nbsp; @Model.Members.Email</label>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 text-danger">Bio : </label>
+                    <label class="col-md-10">
+                        &nbsp;
+                        @Model.Members.Bio
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 text-danger">Kayıt Tarihi : </label>
+                    <label class="col-md-10">
+                        @Model.Members.AddedDate.ToShortDateString()
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 text-danger">Düzenleme Tarihi : </label>
+                    <label class="col-md-10">
+                        @Model.Members.ModifiedDate
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        @if (Session["LogonUser"] != null && ((E_ticaret_projesi.DB.Members)Session["LogonUser"]).Id == Model.Members.Id)
+        {
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 text-right">
+                    <a href="/Account/ProfilEdit" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-edit"></span> Düzenle
+                    </a>
+
+                    <a href="#" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash"></span> Sil
+                    </a>
+                </div>
+                <div class="col-md-12">
+                    &nbsp;
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+
+
+
+</body>
+</html>
+

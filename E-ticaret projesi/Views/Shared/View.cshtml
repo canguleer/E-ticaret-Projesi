@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+    <div> 
+        <input type="text" value="deger" id="getUrun"/>
+        <br />
+        <br />
+        <input type="button" value="sorgula "id="GetJson"/>
+    </div>
+</body>
+</html>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#GetJson").click(function () {
+                var id = $("#getUrun").val();
+
+                $.ajax({
+                    url: "Home/UrunGetir" + id,
+                    type: "Post",
+                    dataType: "json",
+                    success: function (data) {
+                        alert(data.adi + " " + data.fiyat + " " + data.adet);
+                    },
+
+                    error: function (data) {
+                        alert("hata: " + data);
+                    }
+           
+                    
+
+                })
+
+
+            })
+
+
+        })
+
+
+
+    </script>
+    
+    }

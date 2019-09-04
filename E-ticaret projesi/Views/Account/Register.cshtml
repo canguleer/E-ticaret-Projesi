@@ -1,0 +1,95 @@
+﻿@model E_ticaret_projesi.Models.Account.RegisterModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <link href="Content/site.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+
+                @using (Html.BeginForm())
+                {
+                    <form>
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                <h2>Register</h2>
+                                @if (ViewBag.ReError != null && string.IsNullOrEmpty((string)ViewBag.ReError) == false)
+                                {
+                                    <small style="color:red">@ViewBag.ReError</small>
+                                }
+                                else
+                                {
+                                    <small style="color:red">Please enter email and password</small>
+                                }
+
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <center>
+                                        <img src="http://placehold.it/125x125" class="img-circle img-responsive" />
+                                    </center>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Members.Name, new { @class = "form-control", placeholder = "Name", type = "text", requrired = "required" })
+                                </div>
+
+                                <div class="form-group">
+
+                                    @Html.TextBoxFor(model => model.Members.Surname, new { @class = "form-control", placeholder = "Surname", type = "text", requrired="required"})
+                                </div>
+
+                                <div class="form-group">
+
+                                    @Html.TextBoxFor(model => model.Members.Email, new { @class = "form-control", placeholder = "E-mail", type = "email", requrired = "required" })
+                                </div>
+
+                                <div class="form-group">
+
+                                    @Html.TextBoxFor(model => model.Members.Password, new { @class = "form-control", placeholder = "Password", type = "password" , requrired = "required" })
+                                </div>
+
+                                <div class="form-group">
+
+                                    @Html.TextBoxFor(model => model.rePassword, new { @class = "form-control", placeholder = "RePassword", type = "password", requrired = "required" })
+                                </div>
+
+                            </div>
+                            <div class="panel-footer text-right">
+                                <a href="@Url.Action("Login","Account")" class="btn btn-info">
+                                    <span class="glyphicon glyphicon-log-in"></span> Giriş Yap
+                                </a>
+                                <button type="submit" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-floppy-saved"></span> Kayıt Ol
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                }
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+

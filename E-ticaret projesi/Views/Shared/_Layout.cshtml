@@ -1,0 +1,155 @@
+﻿@{
+    E_ticaret_projesi.DB.Members LogonUser = (E_ticaret_projesi.DB.Members)Session["LogonUser"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="~/Content/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <link href="~/Content/Content/site.css" rel="stylesheet" />
+    <link href="~/Content/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Content/site.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menulist" aria-expanded="false">
+                    <span class="sr-only">Menü</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">My Shop</a>
+            </div>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="menulist">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    @if (LogonUser == null)
+                    {
+                        <li>
+                            <a href="@Url.Action("Register","Account")">
+                                <span class="glyphicon glyphicon-user"></span>&nbsp;Kayıt Ol
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Login","Account")">
+                                <span class="glyphicon glyphicon-log-in"></span>&nbsp;Giriş
+                            </a>
+                        </li>
+                    }
+
+                    else
+                    {
+                        <li>
+                            <a href="/Account/Profil/@LogonUser.Id">
+                                <span class="glyphicon glyphicon-user"></span>&nbsp;@($"{LogonUser.Name} {LogonUser.Surname}")
+
+                            </a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#"
+                               class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-envelope"></span>&nbsp;Mesajlar
+                                <span class="badge">2</span>
+                                <span class="caret"></span>
+
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="message.html">Mesaj 1</a></li>
+                                <li><a href="message.html">Mesaj 2</a></li>
+                                <li class="divider" role="separator"></li>
+                                <li><a href="message.html">Mesajlara Git</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Logout","Account")">
+                                <span class="glyphicon glyphicon-log-out"></span>&nbsp;Çıkış
+                            </a>
+                        </li>
+                    }
+                    <li class="dropdown">
+                        <a href="#"
+                           class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Sepetim
+                            <span class="badge">3</span>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="product.html">Ürün 1</a></li>
+                            <li><a href="product.html">Ürün 2</a></li>
+                            <li><a href="product.html">Ürün 3</a></li>
+                            <li class="divider" role="separator"></li>
+                            <li><a href="cart.html">Sepete Git</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    @RenderBody()
+    <div class="well">
+        <div class="row">
+
+            <div class="col-md-4 col-md-offset-4 text-center">
+
+                <a href="http://www.facebook.com" target="_blank">
+                    <span class="fa fa-facebook-square fa-2x"></span>
+                </a>
+
+                <a href="http://www.twitter.com" target="_blank">
+                    <span class="fa fa-twitter-square fa-2x"></span>
+                </a>
+
+                <a href="http://www.youtube.com" target="_blank">
+                    <span class="fa fa-youtube-square fa-2x text-danger"></span>
+                </a>
+
+            </div>
+
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <p>
+                    Tüm Hakları Saklıdır.&copy; 2017
+                </p>
+                <p>
+                    <a href="mailto:mail@mailcom" class="btn btn-info btn-sm">E-Posta Gönder</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Content/Scripts/jquery-1.9.1.js"></script>
+    <script src="~/Content/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.intellisense.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

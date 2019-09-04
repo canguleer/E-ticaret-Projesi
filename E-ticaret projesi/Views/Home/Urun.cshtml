@@ -1,0 +1,55 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+    <div>
+        <input type="text"  id="getUrun" />
+        <br />
+        <br />
+        <input type="button" value="sorgula " id="GetJson" />
+    </div>
+</body>
+</html>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#GetJson").click(function () {
+                var id = $("#getUrun").val();
+                //alert(id);
+
+                $.ajax({
+                    type: "Post",
+                    url: "/Home/GetUrun" + id,
+                    dataType: "json",
+                    contentType:"application/json; charset=utf-8",
+                    success: function (data) {
+                        alert(data.adi + " " + data.fiyat + " " + data.adet);
+                    },
+
+                    error: function (data) {
+                        alert("hata: " + data);
+                    }
+                });
+
+
+            });
+
+
+        })
+
+
+
+    </script>
+
+}

@@ -1,0 +1,68 @@
+﻿@model E_ticaret_projesi.Models.Account.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+
+                @using (Html.BeginForm())
+                {
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            <h2>Giriş Yap</h2>
+                            <small style="color:red;">@TempData["Info"]</small>
+                            @if (ViewBag.reError != null && string.IsNullOrEmpty((string)ViewBag.reError) == false)
+                            {
+                                <small>@ViewBag.reError</small>
+                            }
+                            else
+                            {
+                                <small>Please enter e-mail and password.</small>
+                            }
+
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <center>
+                                    <img src="http://placehold.it/125x125" class="img-circle img-responsive" />
+                                </center>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.Members.Email, new { @class = "form-control", placeholder = "Email", type = "email" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.Members.Password, new { @class = "form-control", placeholder = "Password", type = "password" })
+                            </div>
+
+                        </div>
+                        <div class="panel-footer text-right">
+                            <a href="@Url.Action("ForgetPassword","Account")" class="btn btn-warning">
+                                <span class="glyphicon glyphicon-asterisk"></span> Paralomu Unuttum
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-log-in"></span> Giriş Yap
+                            </button>
+
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
